@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.produtos import ProdutoModel
+from flask_jwt_extended import jwt_required
 
 
 class Produtos(Resource):
@@ -18,12 +19,14 @@ class Produto(Resource):
                             help="The field 'nome' cannot be left blank.")
     attributes.add_argument('descricao')
 
+    @jwt_required
     def get(self, produto_id):
         produto = ProdutoModel.find_produto(produto_id)
         if produto:
             return produto.json()
         return {'message': 'Produto not found.'}, 404
 
+    @jwt_required
     def post(self, produto_id):
         if ProdutoModel.find_produto(produto_id):
             return {"message": "Produto id '{}' already exists."
@@ -39,6 +42,7 @@ class Produto(Resource):
             # Internal Server Error
         return produto.json(), 201
 
+    @jwt_required
     def put(self, produto_id):
         data = Produto.attributes.parse_args()
         produto = ProdutoModel(produto_id, **data)
@@ -51,6 +55,7 @@ class Produto(Resource):
         produto.save_produto()
         return produto.json(), 201
 
+    @jwt_required
     def delete(self, produto_id):
         produto = ProdutoModel.find_produto(produto_id)
         if produto:
