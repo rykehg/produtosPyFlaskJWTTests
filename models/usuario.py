@@ -1,12 +1,13 @@
-from sql_alchemy import database
+from enum import Flag, unique
+from models.sql_alchemy import db
 
 
-class UsuarioModel(database.Model):
+class UsuarioModel(db.Model):
     __tablename__ = 'usuarios'
 
-    usuario_id = database.Column(database.Integer, primary_key=True)
-    login = database.Column(database.String(40))
-    senha = database.Column(database.String(40))
+    usuario_id = db.Column(db.Integer, primary_key=True)
+    login = db.Column(db.String(40), nullable=False, unique=True)
+    senha = db.Column(db.String(40), nullable=False)
 
     def __init__(self, login, senha):
         self.login = login
@@ -33,13 +34,13 @@ class UsuarioModel(database.Model):
         return None
 
     def save_usuario(self):
-        database.session.add(self)
-        database.session.commit()
+        db.session.add(self)
+        db.session.commit()
 
     def update_usuario(self, login, senha):
         self.login = login
         self.senha = senha
 
     def delete_usuario(self):
-        database.session.delete(self)
-        database.session.commit()
+        db.session.delete(self)
+        db.session.commit()

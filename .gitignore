@@ -1,3 +1,4 @@
-/.produtosFlask
+/.produtosFlask*
 /.vscode
 **/__pycache__
+teste.db-journal

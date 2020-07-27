@@ -1,14 +1,14 @@
-from sql_alchemy import database
+from models.sql_alchemy import db
 
 
-class ProdutoModel(database.Model):
+class ProdutoModel(db.Model):
     __tablename__ = 'produtos'
-
-    produto_id = database.Column(database.String(255), primary_key=True)
-    nome = database.Column(database.String(80))
-    quantidade = database.Column(database.Integer)
-    valor = database.Column(database.Float(precision=2))
-    descricao = database.Column(database.String(40))
+    db.get_tables_for_bind
+    produto_id = db.Column(db.String(255), primary_key=True)
+    nome = db.Column(db.String(80), nullable=False)
+    quantidade = db.Column(db.Integer)
+    valor = db.Column(db.Float(precision=2), nullable=False)
+    descricao = db.Column(db.String(40))
 
     def __init__(self, produto_id, nome, quantidade, valor, descricao):
         self.produto_id = produto_id
@@ -34,8 +34,8 @@ class ProdutoModel(database.Model):
         return None
 
     def save_produto(self):
-        database.session.add(self)
-        database.session.commit()
+        db.session.add(self)
+        db.session.commit()
 
     def update_produto(self, nome, quantidade, valor, descricao):
         self.nome = nome
@@ -44,5 +44,5 @@ class ProdutoModel(database.Model):
         self.descricao = descricao
 
     def delete_produto(self):
-        database.session.delete(self)
-        database.session.commit()
+        db.session.delete(self)
+        db.session.commit()

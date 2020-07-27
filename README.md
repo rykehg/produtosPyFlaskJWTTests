@@ -1,22 +1,46 @@
 # A Python Rest App using CRUD with Flask
-> Quick simple CRUD project using Flask, Flask-RESTful, with JWT authentication
+> Quick simple CRUD project using Flask, Flask-RESTful, with JWT authentication.
 
 > #Python #Flask #Flask-RESTful #Flask-SQLAlchemy #Flask-JWT-Extended
 
 ## Installation
-- Clone this repo to your local machine using `https://github.com/rykehg/produtosPyFlaskJWTTests`
-- Start terminal in the root folder of this project
-- In Windows OS Start a new virtual environment and install the requirements
+- Clone this repo to your local machine using `https://github.com/rykehg/produtosPyFlaskJWTTests`.
+- Start terminal in the root folder of this project.
+- In Windows OS Start a new virtual environment and install the requirements.
 ```shell
 $ python -m venv .venv
 $ \Scripts\Activate.ps1
 $ pip install -r requirements.txt
 ```
+- To configure MySQL database just change `"config.py"` to your credentials (user, password, host and database).
+- To run the API in console type `(.venv) $ python run.py`.
+- If database does not exist it will be created automatically by the API.
 
-## Testing the API
-- To test the API use Postman and import "produtosFlask.postman_collection.json"
-- Or use REST Client Extension for VS Code and file "REST_API_Test.rest"
-- Create an user and login to access other routes  
+## Testing using a Client API
+- To test API use Postman and import `"API Client/produtosFlask.postman_collection.json"`.
+- Or use REST Client Extension for VS Code and file `"API Client/REST_API_Test.rest"`.
+- Create an user and login to access other routes.
+
+## Unit Test the API
+- It is important to make a separate virtual environment for testing.
+- In terminal deactivate, if active, `$ deactivate` you current virtual environment and start a new one:
+```shell
+$ python -m venv .test-venv
+$ \Scripts\Activate.ps1
+$ pip install -r requirements.txt
+```
+
+- Set a new database for testing in `"config.py"` file.
+- We are going to use the standard library `unittest` and `json`.
+- To run a single test file use the command:
+```shell
+$ python -m unittest tests/test_create_usuario.py
+```
+
+- To run all the tests:
+```shell
+$ python -m unittest --buffer
+```
 
 
 ---

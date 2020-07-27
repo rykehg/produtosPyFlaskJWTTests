@@ -43,26 +43,28 @@ class Usuario(Resource):
 class UsuarioRegister(Resource):
     # /cadastro
     def post(self):
-        dados = attributes.parse_args()
+        data = attributes.parse_args()
 
-        if UsuarioModel.find_by_login(dados['login']):
+        if UsuarioModel.find_by_login(data['login']):
             return {"message": "The login '{}' already exists."
-                    .format(dados['login'])}
+                    .format(data['login'])}
 
-        usuario = UsuarioModel(**dados)
-        usuario.save_usuario()
-        return {'message': 'Usuario created successfully!'}, 201  # Created
+        if data['login'] and data['senha']:
+            usuario = UsuarioModel(**data)
+            usuario.save_usuario()
+            return {'message': 'Usuario created successfully!'}, 201  # Created
+        return {'message': 'Request is missing required fields'}, 400
 
 
 class UsuarioLogin(Resource):
     # /login
     @classmethod
     def post(cls):
-        dados = attributes.parse_args()
+        data = attributes.parse_args()
 
-        usuario = UsuarioModel.find_by_login(dados['login'])
+        usuario = UsuarioModel.find_by_login(data['login'])
 
-        if usuario and safe_str_cmp(usuario.senha, dados['senha']):
+        if usuario and safe_str_cmp(usuario.senha, data['senha']):
             token_de_acesso = create_access_token(identity=usuario.usuario_id)
             return {'access_token': token_de_acesso}, 200
         return {'message': 'The username or password is incorrect.'}, 401
