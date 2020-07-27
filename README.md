@@ -13,10 +13,10 @@ $ \Scripts\Activate.ps1
 $ pip install -r requirements.txt
 ```
 
-## Testing the app 
-- To test the app use Postman and import "produtosFlask.postman_collection.json"
+## Testing the API
+- To test the API use Postman and import "produtosFlask.postman_collection.json"
 - Or use REST Client Extension for VS Code and file "REST_API_Test.rest"
-- Create a user and login to access the other routes  
+- Create an user and login to access other routes  
 
 
 ---

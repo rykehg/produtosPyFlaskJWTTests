@@ -4,7 +4,7 @@ from sql_alchemy import database
 class ProdutoModel(database.Model):
     __tablename__ = 'produtos'
 
-    produto_id = database.Column(database.String, primary_key=True)
+    produto_id = database.Column(database.String(255), primary_key=True)
     nome = database.Column(database.String(80))
     quantidade = database.Column(database.Integer)
     valor = database.Column(database.Float(precision=2))

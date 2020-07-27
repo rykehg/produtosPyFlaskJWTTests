@@ -34,12 +34,8 @@ class Produto(Resource):
 
         data = Produto.attributes.parse_args()
         produto = ProdutoModel(produto_id, **data)
-        try:
-            produto.save_produto()
-        except:
-            return {"message": "An error ocurred trying\
-                    to create produto."}, 500
-            # Internal Server Error
+        produto.save_produto()
+
         return produto.json(), 201
 
     @jwt_required

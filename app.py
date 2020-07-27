@@ -5,9 +5,17 @@ from resources.usuario import (Usuario, UsuarioRegister, UsuarioLogin,
                                UsuarioLogout)
 from flask_jwt_extended import JWTManager
 from blacklist import BLACKLIST
+from config import MySQL
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+# to use sqlite data base uncomment the line below and comment mysql config
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+# = 'mysql://NomeDoUsuario:SenhaDoBanco@EndereçoDoBanco(HOST)/NomeDoBanco
+app.config['SQLALCHEMY_DATABASE_URI'] = ('mysql://' +
+                                         MySQL["user"] + ":" +
+                                         MySQL["password"] + "@" +
+                                         MySQL["host"] + "/" +
+                                         MySQL["database"])
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'SecureKeyHere12345'
 app.config['JWT_BLACKLIST_ENABLED'] = True

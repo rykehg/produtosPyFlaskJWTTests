@@ -1,1 +1,101 @@
-GET http://127.0.0.1:5000/hoteis
+POST http://127.0.0.1:5000/cadastro
+content-type: application/json
+
+{
+    "login": "ana",
+    "senha": "asdf"
+}
+
+###
+POST http://127.0.0.1:5000/cadastro
+content-type: application/json
+
+{
+    "login": "Bob",
+    "senha": "4321"
+}
+###
+POST http://127.0.0.1:5000/login
+content-type: application/json
+# Obtain the access token
+{
+    "login": "ana",
+    "senha": "asdf"
+}
+
+###
+POST http://127.0.0.1:5000/produtos/echo
+content-type: application/json
+Authorization: Bearer PasteYourAccessTokenHere
+{
+	"produto_id": "alpha",
+	"nome": "Alpha Produto",
+    "quantidade": 5,
+    "valor": 34.56,
+    "descricao": "Alpha produto descrição importante aqui."
+}
+
+###
+POST http://127.0.0.1:5000/produtos/echo
+content-type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTU4MTQ0NjIsIm5iZiI6MTU5NTgxNDQ2MiwianRpIjoiODc0YTE0MzUtMzFhZS00MWMxLThkNzktOWVlNWEyNGM4ZDc0IiwiZXhwIjoxNTk1ODE1MzYyLCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.6zRHsgQpNLZtpKsXBDRftS5lCVKBj_Ctjw6vwW3PA6U
+
+{
+	"produto_id": "echo",
+	"nome": "Echo Produto",
+    "quantidade": 33,
+    "valor": 99.89,
+    "descricao": "Echo produto descrição importante aqui."
+}
+
+###
+GET http://127.0.0.1:5000/produtos
+Authorization: Bearer PasteYourAccessTokenHere
+
+
+###
+GET http://127.0.0.1:5000/produtos/echo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTU4MTQ0NjIsIm5iZiI6MTU5NTgxNDQ2MiwianRpIjoiODc0YTE0MzUtMzFhZS00MWMxLThkNzktOWVlNWEyNGM4ZDc0IiwiZXhwIjoxNTk1ODE1MzYyLCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.6zRHsgQpNLZtpKsXBDRftS5lCVKBj_Ctjw6vwW3PA6U
+
+###
+PUT http://127.0.0.1:5000/produtos/echo
+content-type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTU4MTQ0NjIsIm5iZiI6MTU5NTgxNDQ2MiwianRpIjoiODc0YTE0MzUtMzFhZS00MWMxLThkNzktOWVlNWEyNGM4ZDc0IiwiZXhwIjoxNTk1ODE1MzYyLCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.6zRHsgQpNLZtpKsXBDRftS5lCVKBj_Ctjw6vwW3PA6U
+
+{
+    "produto_id": "echo",
+    "nome": "Echo MASTER Produto",
+    "quantidade": 50,
+    "valor": 199.89,
+    "descricao": "Echo MASTER produto descrição importante aqui."
+}
+
+###
+DELETE http://127.0.0.1:5000/produtos/echo
+content-type: application/json
+Authorization: Bearer PasteYourAccessTokenHere
+
+###
+GET http://127.0.0.1:5000/usuarios/1
+content-type: application/json
+Authorization: Bearer PasteYourAccessTokenHere
+
+###
+PUT http://127.0.0.1:5000/usuarios/1
+content-type: application/json
+Authorization: Bearer PasteYourAccessTokenHere
+
+{
+    "login": "anaA",
+    "senha": "1234"
+}
+
+###
+DELETE http://127.0.0.1:5000/usuarios/2
+content-type: application/json
+Authorization: Bearer PasteYourAccessTokenHere
+
+###
+POST http://127.0.0.1:5000/logout
+content-type: application/json
+Authorization: Bearer PasteYourAccessTokenHere
