@@ -1,9 +1,9 @@
 
 MySQL = {
-    'user': 'root',
-    'password': 'HesselGaeta85',
+    'user': 'user',
+    'password': 'password',
     'host': 'localhost:3306',
-    'database': 'testdb',
+    'database': 'database',
 }
 
 Jwt_secret = {
