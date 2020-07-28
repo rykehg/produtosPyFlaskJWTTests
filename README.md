@@ -12,8 +12,17 @@ $ python -m venv .venv
 $ .venv\Scripts\Activate.ps1
 $ pip install -r requirements.txt
 ```
-- Now create a MySQL data base `CREATE DATABASE MyDataBase`
-- To configure MySQL database just change `"config.py"` to your credentials (user, password, host and database).
+- If using cmd `.venv\Scripts\Activate.bat` to activate the virtual environment
+
+- In Linux:
+```shell
+$ python -m venv .venv
+$ source .venv\bin\activate
+$ pip install -r requirements.txt
+```
+
+- Now create a MySQL data base: `CREATE DATABASE MyDataBase`
+- To configure MySQL database in API just change `"config.py"` to your credentials (user, password, host and database).
 
 - To run the API in console type `(.venv) $ python run.py`.
 - If tables in the data base does not exist it will be created automatically by the API.
