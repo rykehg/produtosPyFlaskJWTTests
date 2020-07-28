@@ -34,7 +34,7 @@ $ pip install -r requirements.txt
 - We are going to use the standard library `unittest` and `json`.
 - To run a single test file use the command:
 ```shell
-$ python -m unittest tests/test_create_usuario.py
+$ python -m unittest tests/test_usuario_create.py
 ```
 
 - To run all the tests:

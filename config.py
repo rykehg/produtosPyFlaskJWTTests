@@ -1,11 +1,15 @@
 
 MySQL = {
-    'user': 'root',
-    'password': 'HesselGaeta85',
-    'host': 'localhost:3306',
-    'database': 'testdb',
+    'user': 'user',
+    'password': 'password',
+    'host': 'host:port',
+    'database': 'databaseName',
 }
 
-Jwt_secret = {
+SQLAlchemyMod = False
+
+JwtSecret = {
     'key': 'SecureKeyHere12345'
 }
+
+JwtBackList = True

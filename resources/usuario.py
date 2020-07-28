@@ -1,8 +1,9 @@
+from flask_jwt_extended import create_access_token, get_raw_jwt, jwt_required
 from flask_restful import Resource, reqparse
-from models.usuario import UsuarioModel
-from flask_jwt_extended import create_access_token, jwt_required, get_raw_jwt
-from werkzeug.security import safe_str_cmp
+from werkzeug.security import check_password_hash, generate_password_hash
+
 from blacklist import BLACKLIST
+from models.usuario import UsuarioModel
 
 attributes = reqparse.RequestParser()
 attributes.add_argument('login', type=str, required=True,
@@ -51,6 +52,7 @@ class UsuarioRegister(Resource):
 
         if data['login'] and data['senha']:
             usuario = UsuarioModel(**data)
+            usuario.senha = generate_password_hash(data['senha'])
             usuario.save_usuario()
             return {'message': 'Usuario created successfully!'}, 201  # Created
         return {'message': 'Request is missing required fields'}, 400
@@ -64,7 +66,7 @@ class UsuarioLogin(Resource):
 
         usuario = UsuarioModel.find_by_login(data['login'])
 
-        if usuario and safe_str_cmp(usuario.senha, data['senha']):
+        if usuario and check_password_hash(usuario.senha, data['senha']):
             token_de_acesso = create_access_token(identity=usuario.usuario_id)
             return {'access_token': token_de_acesso}, 200
         return {'message': 'The username or password is incorrect.'}, 401

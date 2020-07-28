@@ -1,4 +1,3 @@
-from enum import Flag, unique
 from models.sql_alchemy import db
 
 
