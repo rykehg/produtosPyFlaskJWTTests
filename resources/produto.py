@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required
 
 
 class Produtos(Resource):
+    @jwt_required
     def get(self):
         # SELECT * FROM produtos
         return {'Produtos': [produto.json() for produto in

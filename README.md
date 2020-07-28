@@ -21,7 +21,7 @@ $ pip install -r requirements.txt
 - Or use REST Client Extension for VS Code and file `"API Client/REST_API_Test.rest"`.
 - Create an user and login to access other routes.
 
-## Unit Test the API
+## Unit Tests
 - It is important to make a separate virtual environment for testing.
 - In terminal deactivate, if active, `$ deactivate` you current virtual environment and start a new one:
 ```shell
@@ -42,6 +42,8 @@ $ python -m unittest tests/test_create_usuario.py
 $ python -m unittest --buffer
 ```
 
+- To enable testes in VSCode `Ctrl`+`Shift`+`P` and type `Python: Configure Tests`
+- Select `unittest`, `test` folder and `test_*py` pattern to identify test files
 
 ---
 

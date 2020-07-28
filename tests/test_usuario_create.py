@@ -28,9 +28,9 @@ class TestCreateUsuario(BaseCase):
         response = self.app.post('/cadastro', headers={"Content-Type": "application/json"}, data=payload)
 
         # Then
-        self.assertEqual("The field 'login' cannot be left blank.", response.json['login'])
+        self.assertEqual({'login': "The field 'login' cannot be left blank."}, response.json['message'])
         self.assertEqual(400, response.status_code)
-'''
+
     def test_register_without_senha(self):
         # Given
         payload = json.dumps({
@@ -41,7 +41,7 @@ class TestCreateUsuario(BaseCase):
         response = self.app.post('/cadastro', headers={"Content-Type": "application/json"}, data=payload)
 
         # Then
-        self.assertEqual("The field 'senha' cannot be left blank.", response.json['senha'])
+        self.assertEqual({'senha': "The field 'senha' cannot be left blank."}, response.json['message'])
         self.assertEqual(400, response.status_code)
 
     def test_creating_already_existing_user(self):
@@ -58,4 +58,3 @@ class TestCreateUsuario(BaseCase):
         # Then
         self.assertEqual("The login 'paulo' already exists.", response.json['message'])
         self.assertEqual(200, response.status_code)
-'''

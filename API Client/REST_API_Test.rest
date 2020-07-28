@@ -77,10 +77,12 @@ DELETE http://127.0.0.1:5000/produtos/echo
 content-type: application/json
 Authorization: Bearer PasteYourAccessTokenHere
 
+
 ###
-GET http://127.0.0.1:5000/usuarios/1
+GET http://127.0.0.1:5000/usuarios/2
 content-type: application/json
-Authorization: Bearer PasteYourAccessTokenHere
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTU4ODg4NTksIm5iZiI6MTU5NTg4ODg1OSwianRpIjoiYzdmNWEwZjEtNmIzOC00MDA0LWEyNjYtNjkzYTg2ZDUxYzBhIiwiZXhwIjoxNTk1ODg5NzU5LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.pVaSzGWvmShWL-lXWlLPM-LOeLUrjUhaMbak67v9x4o
+
 
 ###
 PUT http://127.0.0.1:5000/usuarios/1
@@ -97,7 +99,9 @@ DELETE http://127.0.0.1:5000/usuarios/2
 content-type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTU4NjA1MzUsIm5iZiI6MTU5NTg2MDUzNSwianRpIjoiMTBiNmY3NDQtZDcxZC00YzNhLTk2NTUtNDBiZTYxMWFkNTVmIiwiZXhwIjoxNTk1ODYxNDM1LCJpZGVudGl0eSI6MSwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.5UdL1ZnyuGtPZt1eDFm3WzjOIjpSCGTQtUZkieKM6tM
 
+
 ###
 POST http://127.0.0.1:5000/logout
 content-type: application/json
 Authorization: Bearer PasteYourAccessTokenHere
+

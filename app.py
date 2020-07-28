@@ -48,9 +48,3 @@ api.add_resource(Usuario, '/usuarios/<int:usuario_id>')
 api.add_resource(UsuarioRegister, '/cadastro')
 api.add_resource(UsuarioLogin, '/login')
 api.add_resource(UsuarioLogout, '/logout')
-"""
-if __name__ == '__main__':
-
-    db.init_app(app)
-    app.run(debug=True)
- """
