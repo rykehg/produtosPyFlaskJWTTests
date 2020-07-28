@@ -5,8 +5,8 @@ class UsuarioModel(db.Model):
     __tablename__ = 'usuarios'
 
     usuario_id = db.Column(db.Integer, primary_key=True)
-    login = db.Column(db.String(40), nullable=False, unique=True)
-    senha = db.Column(db.String(40), nullable=False)
+    login = db.Column(db.String(80), nullable=False, unique=True)
+    senha = db.Column(db.String(255), nullable=False)
 
     def __init__(self, login, senha):
         self.login = login
