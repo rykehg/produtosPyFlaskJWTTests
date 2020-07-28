@@ -75,6 +75,70 @@ class TestPutUsuario(BaseCase):
         self.assertEqual("bob", usuario_data['login'])
         self.assertEqual(200, response.status_code)
 
+    def test_update_usuario_with_no_senha(self):
+        # Given
+        login = "bob"
+        senha = "1234"
+        user_payload = json.dumps({
+            "login": login,
+            "senha": senha
+        })
+
+        response = self.app.post('/cadastro',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        response = self.app.post('/login',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        login_token = response.json['access_token']
+
+        user_update_payload = {
+            "login": "bob"
+        }
+
+        # When
+        response = self.app.put('/usuarios/1',
+                                headers={"Content-Type": "application/json",
+                                         "Authorization": f"Bearer {login_token}"},
+                                data=json.dumps(user_update_payload))
+
+        # Then
+        self.assertEqual({'senha': "The field 'senha' cannot be left blank."},
+                         response.json['message'])
+        self.assertEqual(400, response.status_code)
+
+    def test_update_usuario_with_no_login(self):
+        # Given
+        login = "bob"
+        senha = "1234"
+        user_payload = json.dumps({
+            "login": login,
+            "senha": senha
+        })
+
+        response = self.app.post('/cadastro',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        response = self.app.post('/login',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        login_token = response.json['access_token']
+
+        user_update_payload = {
+            "senha": "1234"
+        }
+
+        # When
+        response = self.app.put('/usuarios/1',
+                                headers={"Content-Type": "application/json",
+                                         "Authorization": f"Bearer {login_token}"},
+                                data=json.dumps(user_update_payload))
+
+        # Then
+        self.assertEqual({'login': "The field 'login' cannot be left blank."},
+                         response.json['message'])
+        self.assertEqual(400, response.status_code)
+
     def test_update_not_existent_usuario(self):
         # Given
         login = "bob"

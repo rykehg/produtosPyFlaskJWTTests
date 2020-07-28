@@ -14,14 +14,18 @@ class TestGetUsuario(BaseCase):
             "senha": senha
         })
 
-        response = self.app.post('/cadastro', headers={"Content-Type": "application/json"}, data=user_payload)
-
-        response = self.app.post('/login', headers={"Content-Type": "application/json"}, data=user_payload)
+        response = self.app.post('/cadastro',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        response = self.app.post('/login',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
         login_token = response.json['access_token']
 
         # When
         response = self.app.get('/usuarios/1',
-            headers={"Content-Type": "application/json", "Authorization": f"Bearer {login_token}"})
+                                headers={"Content-Type": "application/json",
+                                         "Authorization": f"Bearer {login_token}"})
         usuario_data = response.json
 
         # Then
@@ -38,14 +42,18 @@ class TestGetUsuario(BaseCase):
             "senha": senha
         })
 
-        response = self.app.post('/cadastro', headers={"Content-Type": "application/json"}, data=user_payload)
-
-        response = self.app.post('/login', headers={"Content-Type": "application/json"}, data=user_payload)
+        response = self.app.post('/cadastro',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        response = self.app.post('/login',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
         login_token = response.json['access_token']
 
         # When
         response = self.app.get('/usuarios/2',
-            headers={"Content-Type": "application/json", "Authorization": f"Bearer {login_token}"})
+                                headers={"Content-Type": "application/json",
+                                         "Authorization": f"Bearer {login_token}"})
 
         # Then
         self.assertEqual("Usuario not found.", response.json['message'])
@@ -60,16 +68,21 @@ class TestGetUsuario(BaseCase):
             "senha": senha
         })
 
-        response = self.app.post('/cadastro', headers={"Content-Type": "application/json"}, data=user_payload)
-
-        response = self.app.post('/login', headers={"Content-Type": "application/json"}, data=user_payload)
+        response = self.app.post('/cadastro',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        response = self.app.post('/login',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
         login_token = response.json['access_token']
         response = self.app.post('/logout',
-            headers={"Content-Type": "application/json", "Authorization": f"Bearer {login_token}"})
+                                 headers={"Content-Type": "application/json",
+                                          "Authorization": f"Bearer {login_token}"})
 
         # When
         response = self.app.get('/usuarios/1',
-            headers={"Content-Type": "application/json", "Authorization": f"Bearer {login_token}"})
+                                headers={"Content-Type": "application/json",
+                                         "Authorization": f"Bearer {login_token}"})
 
         # Then
         self.assertEqual("You have been logged out.", response.json['message'])

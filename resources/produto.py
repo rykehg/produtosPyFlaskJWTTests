@@ -17,7 +17,7 @@ class Produto(Resource):
                             help="The field 'nome' cannot be left blank.")
     attributes.add_argument('quantidade')
     attributes.add_argument('valor', type=str, required=True,
-                            help="The field 'nome' cannot be left blank.")
+                            help="The field 'valor' cannot be left blank.")
     attributes.add_argument('descricao')
 
     @jwt_required
@@ -34,6 +34,8 @@ class Produto(Resource):
                     .format(produto_id)}, 400  # Bad Request
 
         data = Produto.attributes.parse_args()
+        if not (data['nome'] and data['valor']):
+            return {'message': 'Request is missing required fields.'}, 400
         produto = ProdutoModel(produto_id, **data)
         produto.save_produto()
 
@@ -42,15 +44,15 @@ class Produto(Resource):
     @jwt_required
     def put(self, produto_id):
         data = Produto.attributes.parse_args()
-        produto = ProdutoModel(produto_id, **data)
+        if not (data['nome'] and data['valor']):
+            return {'message': 'Request is missing required fields.'}, 400
 
         produto_encontrado = ProdutoModel.find_produto(produto_id)
         if produto_encontrado:
             produto_encontrado.update_produto(**data)
             produto_encontrado.save_produto()
             return produto_encontrado.json(), 200
-        produto.save_produto()
-        return produto.json(), 201
+        return {'message': 'Produto not found.'}, 404
 
     @jwt_required
     def delete(self, produto_id):

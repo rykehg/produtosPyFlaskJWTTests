@@ -2,3 +2,4 @@
 /.vscode
 **/__pycache__
 teste.db-journal
+teste.db

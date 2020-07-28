@@ -1,4 +1,4 @@
-# A Python Rest App using CRUD with Flask
+# A Rest API using Python and Flask
 > Quick simple CRUD project using Flask, Flask-RESTful, with JWT authentication.
 
 > #Python #Flask #Flask-RESTful #Flask-SQLAlchemy #Flask-JWT-Extended
@@ -18,7 +18,7 @@ $ pip install -r requirements.txt
 
 ## Testing using a Client API
 - To test API use Postman and import `"API Client/produtosFlask.postman_collection.json"`.
-- Or use REST Client Extension for VS Code and file `"API Client/REST_API_Test.rest"`.
+- Or use "REST Client" Extension for VS Code and file `"API Client/REST_API_Test.rest"`.
 - Create an user and login to access other routes.
 
 ## Unit Tests
@@ -42,6 +42,7 @@ $ python -m unittest tests/test_create_usuario.py
 $ python -m unittest --buffer
 ```
 
+- Or use VSCode.
 - To enable testes in VSCode `Ctrl`+`Shift`+`P` and type `Python: Configure Tests`
 - Select `unittest`, `test` folder and `test_*py` pattern to identify test files
 

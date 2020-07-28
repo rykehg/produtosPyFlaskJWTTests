@@ -14,15 +14,19 @@ class TestDeleteUsuario(BaseCase):
             "senha": senha
         })
 
-        response = self.app.post('/cadastro', headers={"Content-Type": "application/json"}, data=user_payload)
+        response = self.app.post('/cadastro',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
 
-        response = self.app.post('/login', headers={"Content-Type": "application/json"}, data=user_payload)
+        response = self.app.post('/login',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
         login_token = response.json['access_token']
 
         # When
         response = self.app.delete('/usuarios/1',
-            headers={"Content-Type": "application/json", "Authorization": f"Bearer {login_token}"})
-        usuario_data = response.json
+                                   headers={"Content-Type": "application/json",
+                                             "Authorization": f"Bearer {login_token}"})
 
         # Then
         self.assertEqual("Usuario deleted.", response.json['message'])
