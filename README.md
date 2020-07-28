@@ -9,12 +9,14 @@
 - In Windows OS Start a new virtual environment and install the requirements.
 ```shell
 $ python -m venv .venv
-$ \Scripts\Activate.ps1
+$ .venv\Scripts\Activate.ps1
 $ pip install -r requirements.txt
 ```
+- Now create a MySQL data base `CREATE DATABASE MyDataBase`
 - To configure MySQL database just change `"config.py"` to your credentials (user, password, host and database).
+
 - To run the API in console type `(.venv) $ python run.py`.
-- If database does not exist it will be created automatically by the API.
+- If tables in the data base does not exist it will be created automatically by the API.
 
 ## Testing using a Client API
 - To test API use Postman and import `"API Client/produtosFlask.postman_collection.json"`.
@@ -26,7 +28,7 @@ $ pip install -r requirements.txt
 - In terminal deactivate, if active, `$ deactivate` you current virtual environment and start a new one:
 ```shell
 $ python -m venv .test-venv
-$ \Scripts\Activate.ps1
+$ .test-venv\Scripts\Activate.ps1
 $ pip install -r requirements.txt
 ```
 
