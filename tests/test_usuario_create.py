@@ -59,3 +59,24 @@ class TestCreateUsuario(BaseCase):
         # Then
         self.assertEqual("The login 'paulo' already exists.", response.json['message'])
         self.assertEqual(200, response.status_code)
+
+    def test_update_usuario_and_try_to_login(self):
+        # Given
+        login = "bob"
+        senha = "1234"
+        user_payload = json.dumps({
+            "login": login,
+            "senha": senha
+        })
+
+        response = self.app.post('/cadastro',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+
+        # When
+        response = self.app.post('/login',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        # Then
+        self.assertEqual(str, type(response.json['access_token']))
+        self.assertEqual(200, response.status_code)

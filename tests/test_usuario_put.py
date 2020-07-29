@@ -171,7 +171,7 @@ class TestPutUsuario(BaseCase):
         self.assertEqual("Usuario not found.", response.json['message'])
         self.assertEqual(404, response.status_code)
 
-    def test_update_usuarios_with_logout_user(self):
+    def test_update_usuario_with_logout_user(self):
         # Given
         login = "bob"
         senha = "1234"
@@ -196,10 +196,46 @@ class TestPutUsuario(BaseCase):
                                  headers={"Content-Type": "application/json",
                                           "Authorization": f"Bearer {login_token}"})
         # When
-        response = self.app.put('/usuarios/2',
+        response = self.app.put('/usuarios/1',
                                 headers={"Content-Type": "application/json",
                                          "Authorization": f"Bearer {login_token}"},
                                 data=json.dumps(user_update_payload))
         # Then
         self.assertEqual("You have been logged out.", response.json['message'])
         self.assertEqual(401, response.status_code)
+
+    def test_update_usuario_and_try_to_login(self):
+        # Given
+        login = "bob"
+        senha = "1234"
+        user_payload = json.dumps({
+            "login": login,
+            "senha": senha
+        })
+
+        response = self.app.post('/cadastro',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        response = self.app.post('/login',
+                                 headers={"Content-Type": "application/json"},
+                                 data=user_payload)
+        login_token = response.json['access_token']
+
+        user_update_payload = {
+            "login": "toby",
+            "senha": "4321"
+        }
+        response = self.app.put('/usuarios/1',
+                                headers={"Content-Type": "application/json",
+                                         "Authorization": f"Bearer {login_token}"},
+                                data=json.dumps(user_update_payload))
+        response = self.app.post('/logout',
+                                 headers={"Content-Type": "application/json",
+                                          "Authorization": f"Bearer {login_token}"})
+        # When
+        response = self.app.post('/login',
+                                 headers={"Content-Type": "application/json"},
+                                 data=json.dumps(user_update_payload))
+        # Then
+        self.assertEqual(str, type(response.json['access_token']))
+        self.assertEqual(200, response.status_code)

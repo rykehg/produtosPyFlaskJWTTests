@@ -25,6 +25,7 @@ class Usuario(Resource):
     @jwt_required
     def put(self, usuario_id):
         data = attributes.parse_args()
+        data['senha'] = generate_password_hash(data['senha'])
         usuario_encontrado = UsuarioModel.find_usuario(usuario_id)
         if usuario_encontrado:
             usuario_encontrado.update_usuario(**data)
