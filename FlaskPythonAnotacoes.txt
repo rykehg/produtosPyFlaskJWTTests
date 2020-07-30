@@ -1,0 +1,32 @@
+Atalhos VS Code
+Alt+Shift+A -> comenta multiplass linhas
+Ctrl+; -> comenta com //
+Ctrl+Espaço -> assistente
+Ctrl+Shift+P -> ações para acessar diferentesconfigs
+Ctrl+D -> modifica multiplos textos iguais apertar varias vezes p selecionar +
+
+Extensão VSCode - REST Client
+criar um arquivo .http ou .rest
+Digitar a URL no topo para fazer as requests
+Pode separar as requests com URLs diferentes usando ###
+
+Extensão VSCode - Bookmark
+alt + win + K <-- cria um bookmark ou remove um criado
+alt + win + L ou J <-- navega entre os bookmarks
+
+py -3 -m venv .venv --cria e executa no vscode ambiente chamado venv
+deactivate --desabilita o ambiente em execussão
+python -m venv .flask-masterclass --cria ambiente chamado flask-masterclass
+.flask-masterclass\Scripts\Activate.ps1 --Antiva o ambiente no poweshell
+pip install -r requirements.txt <-- instala os requisitos se existir o arquivo
+pip uninstall -r requirements.txt <-- caso tenha instalado errado
+pip uninstall -r requirements.txt -y <-- remove todos do requirements.txt
+
+SQLAlchemy
+Tabelas são representadas por classes q serão o modelos dos bancos
+Para criar o banco precisamos usar alguns comandos no terminal (.venv)
+set FLASK_APP=app <-- no linux export. Estamos setando variavel de ambiente para trabalhar com o Flask
+flask shell <-- entra no shell do flask para dar comando de criação de banco
+>>>from app import db <-- importa a base de dados do app 
+>>>db.create_all() <-- cria a base de dados com base nas classes 
+>>>ctrl + Z  <-- para sair do shell
